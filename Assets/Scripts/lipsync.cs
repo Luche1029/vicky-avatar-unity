@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 /// <summary>
@@ -33,6 +34,9 @@ public class LipSync : MonoBehaviour
     [Tooltip("Il vicky.json di Rhubarb, importato come TextAsset (per il test).")]
     public TextAsset rhubarbJson;
 
+    [Tooltip("Il testo per la visualizzazione dei fonemi Rhubarb")]
+    public TMP_Text text;
+
     [Header("Tuning")]
     [Tooltip("Velocita' di easing verso la shape target. Piu' alto = piu' reattivo (e potenzialmente scattoso).")]
     [Range(1f, 30f)] public float blendSpeed = 12f;
@@ -50,15 +54,19 @@ public class LipSync : MonoBehaviour
     static readonly Dictionary<string, (string name, float weight)[]> Map =
         new Dictionary<string, (string, float)[]>
     {
-        { "A", new[] { ("V_Explosive", 60f) } },                       // M B P  (labbra chiuse)
-        { "B", new[] { ("V_Lip_Open", 25f) } },                        // consonanti, leggermente aperta
-        { "C", new[] { ("V_Open",      50f) } },                       // eh / ae (aperta)
-        { "D", new[] { ("V_Open",      95f) } },                       // aa (spalancata)
-        { "E", new[] { ("V_Tight_O",   45f) } },                       // o leggera
-        { "F", new[] { ("V_Tight_O",   85f) } },                       // u / w (pucker)
-        { "G", new[] { ("V_Dental_Lip",80f) } },                       // f / v
-        { "H", new[] { ("V_Lip_Open",  35f), ("V_Tongue_up", 60f) } }, // l
-        { "X", new (string, float)[0] },                               // riposo (tutto a 0)
+        { "A", new[] { ("V_Explosive",      100f) } },    
+        { "B", new[] { ("V_Open",            17f),          
+                        ("V_VWide",         100f) } },       
+        { "C", new[] { ("V_Open",            29f) } },    
+        { "D", new[] { ("V_Open",            11f),          
+                        ("V_VWide",         100f)} },   
+        { "F", new[] { ("V_Open",            15f),          
+                        ("V_Tongue_Raise",   45f), 
+                        ("V_Tongue_Curl_U",  55f)} },                           
+        { "E", new[] { ("V_Tight",          100f) } },      
+        { "G", new[] { ("V_Dental_Lip",     100f) } },          
+        { "H", new[] { ("V_VWide",          100f) } },       
+        { "X", new (string, float)[0] },                   
     };
 
     AudioSource _audio;
@@ -97,6 +105,7 @@ public class LipSync : MonoBehaviour
 
         // shape corrente in base al tempo dell'audio; a riposo quando non sta suonando
         string shape = _audio.isPlaying ? CurrentShape(_audio.time) : "X";
+        text.text = shape;
 
         // target: 0 ovunque, poi applica la shape corrente
         for (int i = 0; i < _target.Length; i++) _target[i] = 0f;

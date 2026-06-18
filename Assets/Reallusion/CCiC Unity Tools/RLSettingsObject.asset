@@ -29,7 +29,7 @@ MonoBehaviour:
   performPostInstallationRuntimeCheck: 0
   updateMessage: 
   updateAvailable: 0
-  lastUpdateCheck: 639171176015511502
+  lastUpdateCheck: 639174203053485310
   jsonTagName: 2.2.6
   jsonHtmlUrl: https://github.com/soupday/CCiC-Unity-Tools/releases/tag/2.2.6
   jsonPublishedAt: 2026-04-07T20:05:42Z
@@ -165,12 +165,12 @@ MonoBehaviour:
     are also functions to remove and install different shader packages if required."}]'
   lastPath: Assets/Reallusion/CCiC Unity Tools/RLSettingsObject.asset
   toolVersion: 2.2.6
-  shaderToolVersion: 
-  InstalledShaderRevision: 0
-  runtimeToolVersion: 
-  installedRuntimeRevision: 0
+  shaderToolVersion: 2.2.6
+  InstalledShaderRevision: 1
+  runtimeToolVersion: 2.2.6
+  installedRuntimeRevision: 1
   showProps: 1
-  lastExportPath: 
+  lastExportPath: D:\Projects\Vicky3D\RL_DataLink
   isClientLocal: 1
   lastSuccessfulHost: 
   lastTriedHosts: []
